@@ -1,58 +1,36 @@
-import { Component } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./public/views/App";
+import Emotes from "./public/views/Emotes";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-// function Hour(props) {
-// return (
-//     ...
-// )
-class Hour extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            date: new Date(),
-        };
-    }
+// const link = new HttpLink({
+//     fetchOptions: {
+//         uri: "http://localhost:4000/graphql",
+//         method: "GET",
+//         mode: "no-cors",
+//     },
+// });
 
-    componentDidMount() {
-        console.log("Component Mounted !🤩");
-        this.timerID = setInterval(
-            () =>
-                this.setState({
-                    date: new Date(),
-                }),
-            1000
-        );
-    }
+const client = new ApolloClient({
+    uri: "https://flyby-gateway.herokuapp.com/",
+    cache: new InMemoryCache(),
+});
 
-    componentWillUnmount() {
-        console.log("removed !💣");
-        clearInterval(this.timerID);
-    }
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+    },
+    {
+        path: "emotes",
+        element: (
+            <ApolloProvider client={client}>
+                <Emotes />
+            </ApolloProvider>
+        ),
+    },
+]);
 
-    // tick() {
-    //     this.setState({
-    //         date: new Date(),
-    //     });
-    // }
-    render() {
-        return (
-            <div>
-                <h1 className="text-blue-600">{this.props.title}</h1>
-                {/* <h2 className="text-gray-400">{new Date().toLocaleTimeString()}</h2> */}
-                <h2 className="text-gray-400">{this.state.date.toLocaleTimeString("fr-FR")}</h2>
-            </div>
-        );
-    }
-}
-
-const root = createRoot(document.getElementById("root"));
-
-// Whitout state property
-// function tick() {
-// Add a property as an atribute to the component
-// const element = <Hour title="Bienvenue" />;
-root.render(<Hour title="Bienvenue" />);
-// }
-console.log("test");
-
-// setInterval(tick, 1000);
+createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);
