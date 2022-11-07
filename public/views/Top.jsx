@@ -1,13 +1,12 @@
-/* eslint-disable react/react-in-jsx-scope */
 // import PropTypes from 'prop-types'
 import NavBar from "../components/NavBar";
 import { useQuery } from "@apollo/client";
 import spinner from "../../src/assets/images/spinner.gif";
 import erreur from "../../src/assets/images/erreur.png";
-import GET_EMOTES from "../../GraphQL/queries";
+import { GET_TOP_EMOTES } from "../../GraphQL/queries";
 
 function DisplayEmotes() {
-    const { loading, error, data } = useQuery(GET_EMOTES);
+    const { loading, error, data } = useQuery(GET_TOP_EMOTES);
 
     if (loading)
         return (
@@ -22,25 +21,28 @@ function DisplayEmotes() {
                 <p className="text-center text-xl font-bold">Une erreur est survenue lors de la requete</p>
             </div>
         );
-    return data.map(({ id, source_url }) => (
-        <div key={id} className="bg-gray-700 p-3">
-            <div className="flex gap-2 bg-gray-600">
-                <img src={`${source_url}`} />
-                <p className="font-bold">{`${id}`}</p>
+    return data.emotesTop.map((emote) => (
+        <div key={emote.id}>
+            <div className=" border-2 border-black">
+                <a href={emote.source_url}>
+                    <img className="w-20 h-20" src={`${emote.source_url}`} />
+                </a>
             </div>
         </div>
     ));
 }
 
-function Emotes() {
+function Top() {
     return (
         <>
             <NavBar />
-            <DisplayEmotes />
+            <div className="flex justify-center flex-wrap gap-x-2 gap-y-5 m-3">
+                <DisplayEmotes />
+            </div>
         </>
     );
 }
 
-Emotes.propTypes = {};
+Top.propTypes = {};
 
-export default Emotes;
+export default Top;

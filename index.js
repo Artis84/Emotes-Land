@@ -1,20 +1,13 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./public/views/App";
-import Emotes from "./public/views/Emotes";
+import Hot from "./public/views/Hot";
+import Top from "./public/views/Top";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-
-// const link = new HttpLink({
-//     fetchOptions: {
-//         uri: "http://localhost:4000/graphql",
-//         method: "GET",
-//         mode: "no-cors",
-//     },
-// });
+import { StrictMode } from "react";
 
 const client = new ApolloClient({
-    uri: "https://flyby-gateway.herokuapp.com/",
+    uri: "https://public54c03220a6e86c0e.stepzen.net/api/get-hot-emotes/__graphql",
     cache: new InMemoryCache(),
 });
 
@@ -24,11 +17,23 @@ const router = createBrowserRouter([
         element: <App />,
     },
     {
-        path: "emotes",
+        path: "top",
         element: (
-            <ApolloProvider client={client}>
-                <Emotes />
-            </ApolloProvider>
+            <StrictMode>
+                <ApolloProvider client={client}>
+                    <Top />
+                </ApolloProvider>
+            </StrictMode>
+        ),
+    },
+    {
+        path: "hot",
+        element: (
+            <StrictMode>
+                <ApolloProvider client={client}>
+                    <Hot />
+                </ApolloProvider>
+            </StrictMode>
         ),
     },
 ]);
