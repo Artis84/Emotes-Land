@@ -8,6 +8,15 @@ import { GET_HOT_EMOTES } from "../../GraphQL/queries";
 function DisplayEmotes() {
     const { loading, error, data } = useQuery(GET_HOT_EMOTES);
 
+    function showPopup() {
+        document.getElementById("popup").style.display = "flex";
+        new Promise(() => {
+            setTimeout(() => {
+                document.getElementById("popup").style.display = "none";
+            }, 2000);
+        });
+    }
+
     if (loading)
         return (
             <div className="flex justify-center items-center h-full">
@@ -23,11 +32,17 @@ function DisplayEmotes() {
         );
     return data.emotesHot.map((emote) => (
         <div key={emote.id}>
-            <div className=" border-2 border-black">
-                <a href={emote.source_url}>
-                    <img className="w-20 h-20" src={`${emote.source_url}`} />
-                </a>
-            </div>
+            <img
+                className="w-20 h-20 border-2 border-black hover:scale-110 transition duration-150 ease-in-out cursor-pointer"
+                src={`${emote.source_url}`}
+                onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                }}
+                onClick={(e) => {
+                    navigator.clipboard.writeText(e.currentTarget.src);
+                }}
+                onMouseUp={showPopup}
+            />
         </div>
     ));
 }

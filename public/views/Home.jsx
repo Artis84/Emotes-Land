@@ -1,15 +1,16 @@
+import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 // import PropTypes from "prop-types";
 
-function App() {
+function Home() {
     return (
         <>
             <NavBar />
-            <p>FUCK MEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</p>
+            <Outlet />
         </>
     );
 }
 
-App.propTypes = {};
+Home.propTypes = {};
 
-export default App;
+export default Home;
