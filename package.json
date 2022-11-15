@@ -30,6 +30,5 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "tw-elements": "^1.0.0-alpha12"
-  },
-  "main": "index.js"
+  }
 }
