@@ -31,18 +31,14 @@ function DisplayEmotes({ fetchCategory }) {
 
     if (loading)
         return (
-            <div className="w-screen h-screen">
-                <div className="flex justify-center items-center h-full">
-                    <img className="w-120 h-120" src={spinner} alt="Loading" />
-                </div>
+            <div className="flex justify-center items-center h-[20vw]">
+                <img className="w-120 h-120" src={spinner} alt="Loading" />
             </div>
         );
     if (networkStatus === NetworkStatus.refetch)
         return (
-            <div className="w-screen h-screen">
-                <div className="flex justify-center items-center h-full">
-                    <img className="w-20 h-20" src={spinner} alt="Loading" />
-                </div>
+            <div className="flex justify-center items-center h-[20vw]">
+                <img className="w-120 h-120" src={spinner} alt="Loading" />
             </div>
         );
     if (error)
