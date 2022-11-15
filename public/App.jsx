@@ -1,16 +1,15 @@
 /*global process*/
-import * as dotenv from "dotenv";
 import { Route, Routes } from "react-router-dom";
-import Hot from "./views/Hot";
-import Top from "./views/Top";
-import Home from "./views/Home";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { StrictMode } from "react";
-import Streams from "./views/Streams";
-import ErrorPage from "./components/error-page";
-// import PropTypes from "prop-types";
+import { StrictMode, Suspense, lazy } from "react";
+import placeholder from "../src/assets/images/loading-placeholder.png";
 
-dotenv.config();
+const Home = lazy(() => import("./views/Home"));
+const Top = lazy(() => import("./views/Top"));
+const Hot = lazy(() => import("./views/Hot"));
+const Streams = lazy(() => import("./views/Streams"));
+const ErrorPage = lazy(() => import("./components/error-page"));
+
 function App() {
     const client = new ApolloClient({
         uri: process.env.API_END_POINT,
@@ -18,34 +17,35 @@ function App() {
     });
     return (
         <>
-            <Routes>
-                <Route
-                    index
-                    element={
-                        <StrictMode>
-                            <Home />
-                        </StrictMode>
-                    }
-                />
-                <Route
-                    path="/"
-                    element={
-                        <StrictMode>
-                            <Home />
-                        </StrictMode>
-                    }
-                    errorElement={<ErrorPage />}>
+            <Suspense
+                fallback={
+                    <div>
+                        <img className="object-contain" src={placeholder} alt="Chargement en cours." />
+                    </div>
+                }>
+                <Routes>
                     <Route
-                        path="top"
+                        index
                         element={
                             <StrictMode>
-                                <ApolloProvider client={client}>
-                                    <Top />
-                                </ApolloProvider>
+                                <Home />
+                            </StrictMode>
+                        }
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            <StrictMode>
+                                <Home />
+                            </StrictMode>
+                        }
+                        errorElement={
+                            <StrictMode>
+                                <ErrorPage />
                             </StrictMode>
                         }>
                         <Route
-                            path=":page"
+                            path="top"
                             element={
                                 <StrictMode>
                                     <ApolloProvider client={client}>
@@ -54,27 +54,27 @@ function App() {
                                 </StrictMode>
                             }
                         />
+                        <Route
+                            path="hot"
+                            element={
+                                <StrictMode>
+                                    <ApolloProvider client={client}>
+                                        <Hot />
+                                    </ApolloProvider>
+                                </StrictMode>
+                            }
+                        />
+                        <Route
+                            path="stream"
+                            element={
+                                <StrictMode>
+                                    <Streams />
+                                </StrictMode>
+                            }
+                        />
                     </Route>
-                    <Route
-                        path="hot"
-                        element={
-                            <StrictMode>
-                                <ApolloProvider client={client}>
-                                    <Hot />
-                                </ApolloProvider>
-                            </StrictMode>
-                        }
-                    />
-                    <Route
-                        path="stream"
-                        element={
-                            <StrictMode>
-                                <Streams />
-                            </StrictMode>
-                        }
-                    />
-                </Route>
-            </Routes>
+                </Routes>
+            </Suspense>
         </>
     );
 }

@@ -1,14 +1,9 @@
 // import PropTypes from 'prop-types'
 import DisplayEmotes from "../components/DisplayEmotes";
+import { GET_TOP_EMOTES } from "../../GraphQL/queries";
 
 function Top() {
-    return (
-        <div className="flex justify-center flex-wrap gap-x-2 gap-y-5 m-3 w-screen h-screen">
-            <DisplayEmotes />
-        </div>
-    );
+    return <DisplayEmotes fetchCategory={GET_TOP_EMOTES} />;
 }
-
-Top.propTypes = {};
 
 export default Top;

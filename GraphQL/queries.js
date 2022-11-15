@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const GET_TOP_EMOTES = gql`
-    query GetEmotes($page: String = "1") {
+    query GetEmotes($page: String!) {
         emotesTop(page: $page) {
             source_url
             id
