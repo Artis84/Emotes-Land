@@ -8,7 +8,8 @@ const Home = lazy(() => import("./views/Home"));
 const Top = lazy(() => import("./views/Top"));
 const Hot = lazy(() => import("./views/Hot"));
 const Streams = lazy(() => import("./views/Streams"));
-const ErrorPage = lazy(() => import("./components/error-page"));
+const Results = lazy(() => import("./views/Results"));
+const ErrorPage = lazy(() => import("./components/ErrorPage"));
 
 function App() {
     const client = new ApolloClient({
@@ -69,6 +70,16 @@ function App() {
                             element={
                                 <StrictMode>
                                     <Streams />
+                                </StrictMode>
+                            }
+                        />
+                        <Route
+                            path="results/:query"
+                            element={
+                                <StrictMode>
+                                    <ApolloProvider client={client}>
+                                        <Results />
+                                    </ApolloProvider>
                                 </StrictMode>
                             }
                         />
