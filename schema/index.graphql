@@ -1,0 +1,33 @@
+type EmotesEntry {
+    cache_url: String!
+    category: String!
+    created_at: DateTime!
+    id: ID!
+    interact_count: Int!
+    is_deleted: Boolean!
+    score: Int!
+    slug: String!
+    source_exists: Boolean!
+    source_type: String!
+    source_url: String!
+    user_id: Int!
+}
+
+type ResultsEntry {
+    tags: [String]!
+    medias: [EmotesEntry!]!
+    next_page: Int
+    has_more: Boolean!
+}
+
+type Query {
+    emotesHot(page: Int): [EmotesEntry] @rest(endpoint: "https://risibank.fr/api/v1/medias/hot")
+}
+
+type Query {
+    emotesTop(page: Int): [EmotesEntry] @rest(endpoint: "https://risibank.fr/api/v1/medias/top")
+}
+
+type Query {
+    emotesSearch(query: String, page: Int): [ResultsEntry] @rest(endpoint: "https://risibank.fr/api/v1/medias/search")
+}

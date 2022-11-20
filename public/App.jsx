@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { StrictMode, Suspense, lazy } from "react";
 import placeholder from "../src/assets/images/loading-placeholder.png";
+import NavBar from "./components/NavBar";
 
 const Home = lazy(() => import("./views/Home"));
 const Top = lazy(() => import("./views/Top"));
@@ -29,6 +30,7 @@ function App() {
                         index
                         element={
                             <StrictMode>
+                                <NavBar />
                                 <Home />
                             </StrictMode>
                         }
@@ -37,9 +39,10 @@ function App() {
                         path="/"
                         element={
                             <StrictMode>
-                                <Home />
+                                <NavBar />
                             </StrictMode>
                         }
+                        // Don't work
                         errorElement={
                             <StrictMode>
                                 <ErrorPage />

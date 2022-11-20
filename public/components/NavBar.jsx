@@ -3,7 +3,7 @@
 // import PropTypes from "prop-types";
 
 import { useState, useCallback, useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import PopupCv from "./PopupCv";
 
 function NavBar() {
@@ -32,7 +32,7 @@ function NavBar() {
     return (
         <>
             <PopupCv />
-            <div className="w-full bg-slate-700">
+            <div className=" bg-slate-700 border-b-2 border-black">
                 <nav className="flex justify-between">
                     <div className="flex items-center py-5 px-4 w-full">
                         <NavLink to="/" className="ease-linear duration-200 hover:rotate-45">
@@ -72,7 +72,7 @@ function NavBar() {
                         </ul>
                     </div>
                     <div className="flex justify-center items-center">
-                        <div className="mb-3 xl:w-96">
+                        <div className="mb-3 md:hidden lg:block lg:w-96">
                             <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
                                 <input
                                     required
@@ -113,6 +113,7 @@ function NavBar() {
                     </div>
                 </nav>
             </div>
+            <Outlet />
         </>
     );
 }
