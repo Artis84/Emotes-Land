@@ -72,37 +72,35 @@ function DisplayResultsEmotes({ fetchCategory }) {
     return (
         <>
             <div className="flex justify-center flex-wrap gap-x-2 gap-y-5 m-3">{showEmotes(data)}</div>
-            {data.has_more && (
-                <div className="flex justify-center m-5">
-                    <nav aria-label="Page navigation">
-                        <ul className="flex items-center list-style-none">
-                            <li
-                                className="px-5 hover:text-orange-600 hover:font-bold cursor-pointer"
-                                onClick={() => {
-                                    if (page != 1) {
-                                        setPage(page - 1);
-                                        refetch({ page: page });
-                                    }
-                                }}>
-                                Previous
-                            </li>
-                            <div className="w-10">
-                                <li className=" text-orange-600 text-lg h-6 bg-gray-600 text-center align-middle rounded-sm">{page}</li>
-                            </div>
-                            <li
-                                className="px-5 hover:text-orange-600 hover:font-bold cursor-pointer"
-                                onClick={() => {
-                                    if (data.emotesSearch[0].has_more) {
-                                        setPage(page + 1);
-                                        refetch({ page: page });
-                                    }
-                                }}>
-                                Next
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            )}
+            <div className="flex justify-center m-5">
+                <nav aria-label="Page navigation">
+                    <ul className="flex items-center list-style-none">
+                        <li
+                            className="px-5 hover:text-orange-600 hover:font-bold cursor-pointer"
+                            onClick={() => {
+                                if (page != 1) {
+                                    setPage(page - 1);
+                                    refetch({ page: page });
+                                }
+                            }}>
+                            Previous
+                        </li>
+                        <div className="w-10">
+                            <li className=" text-orange-600 text-lg h-6 bg-gray-600 text-center align-middle rounded-sm">{page}</li>
+                        </div>
+                        <li
+                            className="px-5 hover:text-orange-600 hover:font-bold cursor-pointer"
+                            onClick={() => {
+                                if (data.emotesSearch[0].has_more) {
+                                    setPage(page + 1);
+                                    refetch({ page: page });
+                                }
+                            }}>
+                            Next
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </>
     );
 }

@@ -4,11 +4,9 @@ import { GET_HOT_EMOTES } from "../../GraphQL/queries";
 
 function Hot() {
     return (
-        <>
-            <main>
-                <DisplayEmotes fetchCategory={GET_HOT_EMOTES} />;
-            </main>
-        </>
+        <main>
+            <DisplayEmotes fetchCategory={GET_HOT_EMOTES} />;
+        </main>
     );
 }
 

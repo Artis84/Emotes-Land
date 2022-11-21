@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
+    "@loadable/component": "^5.15.2",
     "@swc/helpers": "^0.4.12",
     "graphql": "^16.6.0",
     "prop-types": "^15.8.1",

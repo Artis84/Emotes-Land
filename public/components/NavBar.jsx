@@ -3,7 +3,7 @@
 // import PropTypes from "prop-types";
 
 import { useState, useCallback, useRef } from "react";
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import PopupCv from "./PopupCv";
 
 function NavBar() {
@@ -113,7 +113,6 @@ function NavBar() {
                     </div>
                 </nav>
             </div>
-            <Outlet />
         </>
     );
 }
