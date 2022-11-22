@@ -4,7 +4,7 @@ import omagalul from "../../src/assets/images/omagalul.png";
 
 function Home() {
     return (
-        <div className="bg-slate-700 p-5 h-screen">
+        <div className="bg-slate-700 p-5">
             <div className="home flex justify-around items-center h-[800px] ">
                 <div className="flex items-center justify-center w-[800px] h-[600px] border-4 bg-slate-700 border-black">
                     <p className="flex flex-col text-9xl p-2 text-center border-4 border-orange-600 bg-slate-700 rounded-md">
