@@ -18,13 +18,10 @@ function NavBar() {
 
     const refButtonSearch = useCallback((node) => {
         btnSearch.current = node;
-        console.log(btnSearch);
     }, []);
 
     function handleKeypress(e) {
         if (e.key === "Enter") {
-            console.log("hit");
-            console.log(btnSearch);
             btnSearch.current.click();
         }
     }
@@ -32,7 +29,7 @@ function NavBar() {
     return (
         <>
             <PopupCv />
-            <div className=" bg-slate-700 border-b-2 border-black">
+            <div className="relative bg-slate-700 border-b-2 border-black">
                 <nav className="flex justify-between">
                     <div className="flex items-center py-5 px-4 w-full">
                         <NavLink to="/" className="ease-linear duration-200 hover:rotate-45">
@@ -44,7 +41,7 @@ function NavBar() {
                                     Emotes
                                 </button>
                                 <ul
-                                    className="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
+                                    className="dropdown-menu min-w-max absolute hidden bg-white text-base float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
                                     aria-labelledby="dropdownMenuButton1">
                                     <li>
                                         <Link className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" to="top">
@@ -103,11 +100,11 @@ function NavBar() {
                     </div>
                     <div className="flex items-center justify-end py-5 px-4 w-full">
                         <ul className="flex gap-4 px-5">
-                            <NavLink to="profile" style={({ isActive }) => (isActive ? activeStyle : undefined)} className="p-2 hover:text-orange-600">
-                                <li className="text-lg">Profil</li>
+                            <NavLink to="singin" style={({ isActive }) => (isActive ? activeStyle : undefined)} className="p-2 hover:text-orange-600">
+                                <li className="text-lg">Inscription</li>
                             </NavLink>
-                            <NavLink to="parametres" style={({ isActive }) => (isActive ? activeStyle : undefined)} className="p-2 text-lg hover:text-orange-600">
-                                <li>Paramétres</li>
+                            <NavLink to="login" style={({ isActive }) => (isActive ? activeStyle : undefined)} className="p-2 text-lg hover:text-orange-600">
+                                <li>Connexion</li>
                             </NavLink>
                         </ul>
                     </div>

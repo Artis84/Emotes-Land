@@ -16,5 +16,5 @@ Fecting some emotes and displaying them. Thats it 🙂
 -   fix nav bar menu
 -   Refresh git cache so the .gitignore can update ✔ (git rm -r --cached .)
 -   fill the index page with some shit ✔
--   Add a "No results" screen
--   Show page navigation ui when user search emotes are display.
+-   Add a "No results" screen✔
+-   Show page navigation ui when user search emotes are display.✔

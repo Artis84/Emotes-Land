@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.hover-screen-icon {
+    background-color: #ea580c;
+    border-radius: 0 0 0 30%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.25rem;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.hover-container:hover .hover-screen-icon {
+    display: initial;
+}
+.hover-screen-icon:active .screen-icon {
+    display: initial;
+}
 .slide-bottom {
     -webkit-animation: slide-bottom 0.1s linear both;
     animation: slide-bottom 0.1s linear both;

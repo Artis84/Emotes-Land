@@ -7,6 +7,7 @@ import { StrictMode } from "react";
 import placeholder from "./src/assets/images/emotes-placeholder.png";
 import Home from "./public/views/Home";
 import NavBar from "./public/components/NavBar";
+import Singin from "./public/views/singin";
 
 const App = loadable(() => import("./public/App"));
 const Top = loadable(() => import("./public/views/Top"), {
@@ -19,7 +20,7 @@ const Streams = loadable(() => import("./public/views/Streams"));
 const Results = loadable(() => import("./public/views/Results"), {
     fallback: <img src={placeholder} />,
 });
-const ErrorPage = loadable(() => import("./public/components/ErrorPage"));
+const ErrorPage = loadable(() => import("./public/components/ErrorPage")); // Le routeur ne marche pas car le composant Route parent ne peut pas etre enfant.
 
 const client = new ApolloClient({
     uri: process.env.API_END_POINT,
@@ -71,6 +72,16 @@ const router = createBrowserRouter(
                     }
                 />
                 <Route
+                    path="results/:query"
+                    element={
+                        <StrictMode>
+                            <ApolloProvider client={client}>
+                                <Results />
+                            </ApolloProvider>
+                        </StrictMode>
+                    }
+                />
+                <Route
                     path="stream"
                     element={
                         <StrictMode>
@@ -79,12 +90,10 @@ const router = createBrowserRouter(
                     }
                 />
                 <Route
-                    path="results/:query"
+                    path="singin"
                     element={
                         <StrictMode>
-                            <ApolloProvider client={client}>
-                                <Results />
-                            </ApolloProvider>
+                            <Singin />
                         </StrictMode>
                     }
                 />

@@ -4,11 +4,9 @@ import DisplayResultsEmotes from "../components/DisplayResultsEmotes";
 
 function Results() {
     return (
-        <>
-            <main>
-                <DisplayResultsEmotes fetchCategory={GET_SEARCH_EMOTES} />;
-            </main>
-        </>
+        <main>
+            <DisplayResultsEmotes fetchCategory={GET_SEARCH_EMOTES} />;
+        </main>
     );
 }
 
