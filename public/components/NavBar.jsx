@@ -30,8 +30,8 @@ function NavBar() {
         <>
             <PopupCv />
             <div className="relative bg-slate-700 border-b-2 border-black">
-                <nav className="flex justify-between">
-                    <div className="flex items-center py-5 px-4 w-full">
+                <nav className="flex flex-col justify-between lg:flex-row">
+                    <div className="flex flex-col items-center w-full lg:flex-row lg:py-5 lg:px-4">
                         <NavLink to="/" className="ease-linear duration-200 hover:rotate-45">
                             <img className="m-2" src="https://cdn.frankerfacez.com/emote/243789/2" />
                         </NavLink>
@@ -69,7 +69,7 @@ function NavBar() {
                         </ul>
                     </div>
                     <div className="flex justify-center items-center">
-                        <div className="mb-3 md:hidden lg:block lg:w-96">
+                        <div className="mb-3 lg:block lg:w-96">
                             <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
                                 <input
                                     required
